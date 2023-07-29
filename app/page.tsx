@@ -1,9 +1,11 @@
-import Image from 'next/image'
+import Hero from "@/components/Hero"
 
 export default function Home() {
   return (
    <main>
-    <h1>Border Radius Previewer</h1>
+    <article className="w-4/5 mx-auto">
+      <Hero />
+    </article>
    </main>
   )
 }
