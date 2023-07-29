@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Binary To Decimal Converter
 
-## Getting Started
+## Description
 
-First, run the development server:
+An application that helps composing CSS border radius with up to 8 values.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The idea came from a lovely GitHub repository called `app-ideas` and can be found here:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### [🔗 GitHub Repository](https://github.com/mateuscgodoy/app-ideas/blob/master/Projects/1-Beginner/Bin2Dec-App.md) 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Difficulty Level
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### 🟢 Beginner
 
-## Learn More
+## Requirements
 
-To learn more about Next.js, take a look at the following resources:
+### 💼 Mandatory Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [ ] Users can see a box which has a `border-radius` property applied to it.
+- [ ] Users can change the 4 `border-radius` values that are applied to the box (top-left, top-right, bottom-left, bottom-right)
+- [ ] Users can copy the result CSS to the clipboard.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### ⭐ Extra Features
 
-## Deploy on Vercel
+- [ ] Users may change all 8 possible values of the border-radius in order to create a complex shape.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🧱 Constraints
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* None.
+
+## Final Version
+
+### ⚒️ Work in progress...
+
+Thank you for checking this project out!
+
+Hugs from Brazil 🇧🇷 😊
+
+---
+---
