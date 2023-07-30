@@ -1,5 +1,6 @@
 "use client";
 
+import BorderForm from "./BorderForm";
 import Rectangle from "./Rectangle";
 
 export default function ContentContainer() {
@@ -8,9 +9,7 @@ export default function ContentContainer() {
       <Rectangle />
       <div className="border-2 border-blue-600 h-[325px] my-auto"></div>
       <div className="flex flex-col">
-        <div>
-          The Form Component
-        </div>
+        <BorderForm />
         <div>
           The CSS print Component
         </div>
