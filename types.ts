@@ -12,6 +12,11 @@ export type BorderType = {
   id: string
 }
 
+export type BorderRadiis = {
+  horizontal: number,
+  vertical: number
+}
+
 export const TopLeftSection : BorderType = {
   label: "Top Left",
   id: "top-left",
