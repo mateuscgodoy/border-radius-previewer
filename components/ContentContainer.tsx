@@ -24,7 +24,7 @@ export default function ContentContainer() {
   });
 
   return (
-    <section>
+    <section className="mt-20">
       <section className="mt-6 flex justify-stretch">
         <Rectangle 
           topLeftValue={topLeftValue} 
