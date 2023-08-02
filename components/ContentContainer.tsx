@@ -1,38 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, createContext, Dispatch, SetStateAction } from "react";
 import BorderForm from "./BorderForm";
 import Rectangle from "./Rectangle";
-import { BorderRadiis } from "@/types";
+import { DimensionType } from "@/types";
+import { dimensions } from "@/utils/dimensions";
+import { create } from "zustand";
+
+type DimensionContextType = {
+  dimensionsArray: DimensionType[],
+  setDimensions: Dispatch<SetStateAction<DimensionType[]>>
+}
+
+export const DimensionsContext = createContext<DimensionContextType | undefined>(undefined);
+
+interface StyleState {
+  styleString: string
+  write: (newStyle:string) => void
+}
+
+export const useStyleStore = create<StyleState>((set) => ({
+  styleString: "",
+  write: (newStyle) => set((state) => ({styleString: newStyle}),)
+}));
 
 export default function ContentContainer() {
-  const [topLeftValue, setTopLeftValue] = useState<BorderRadiis>({
-    horizontal: 0,
-    vertical: 0
-  });
-  const [topRightValue, setTopRightValue] = useState<BorderRadiis>({
-    horizontal: 0,
-    vertical: 0
-  });
-  const [botLeftValue, setBotLeftValue] = useState<BorderRadiis>({
-    horizontal: 0,
-    vertical: 0
-  });
-  const [botRightValue, setBotRightValue] = useState<BorderRadiis>({
-    horizontal: 0,
-    vertical: 0
-  });
+  const [dimensionsArray, setDimensions] = useState<DimensionType[]>(dimensions);
 
   return (
     <section className="mt-20">
       <section className="mt-6 flex justify-stretch">
-        <Rectangle 
-          topLeftValue={topLeftValue} 
-          topRightValue={topRightValue} 
-          botRightValue={botRightValue}
-          botLeftValue={botLeftValue}
-        />
-        <BorderForm />
+        <DimensionsContext.Provider value={{
+          dimensionsArray, setDimensions}
+        }>
+          <Rectangle />
+          <BorderForm />
+        </DimensionsContext.Provider>
       </section>
       <div>The CSS print Component</div>
     </section>
