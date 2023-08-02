@@ -47,6 +47,9 @@ export const BotRightSection : BorderType = {
   }
 }
 
+export const borderTypes: BorderType[] = [
+  TopLeftSection, TopRightSection, BotRightSection, BotLeftSection
+]
 
 export const dimensions: DimensionType[] = [
   {

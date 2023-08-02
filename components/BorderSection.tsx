@@ -1,32 +1,18 @@
 "use client";
 
 import { Radiis, BorderType } from "@/types";
-import { useContext, useState } from "react";
-import { DimensionsContext } from "./ContentContainer";
+import { useState } from "react";
+import { useBorderStore } from "./ContentContainer";
 
 type Props = {
   type: BorderType,
 };
 
 export default function BorderSection({ type }: Props) {
-  //TODO: FIX THE BUG WITH THE CONTEXT - STATE - STORE DIMENSION
-
-  const context = useContext(DimensionsContext);
-  const {dimensionsArray, setDimensions} = context || {};
-
   const [horizValue, setHorizValue] = useState(type.radiis.horizontal);
   const [vertValue, setVertValue] = useState(type.radiis.vertical);
   const [isSync, setIsSync] = useState(true);
-
-
-  const updateDimensions = (newRadii: Radiis) => {
-    setDimensions!((prev) => {
-      prev.filter(dimension => dimension.id === type.id)[0].type.radiis = newRadii;
-      return prev;
-    })
-  }
-
-  const borderRadii = dimensionsArray!.filter(item => item.id === type.id)[0].type.radiis;
+  const {setBorderRadii} = useBorderStore();
 
   return (
     <div className={`flex items-center gap-x-6 justify-around 
@@ -38,7 +24,7 @@ export default function BorderSection({ type }: Props) {
         <div className={`flex gap-x-1 w-full justify-end ${!isSync && 
           "transition-opacity duration-700 opacity-50"}`}>
           <p className="text-xl font-semibold self-end w-10">
-            {borderRadii.vertical + borderRadii.vertical}
+            {horizValue + vertValue}
             <span className="text-sm">%</span> 
           </p>
           <label htmlFor={type.id} className="flex flex-col flex-grow max-w-sm">
@@ -46,10 +32,14 @@ export default function BorderSection({ type }: Props) {
               <input type="range" min={-1} max={101} step={1} id={type.id} value={horizValue + vertValue} 
                 onChange={(e) => {
                   if (Number(e.target.value) >= 0 && Number(e.target.value) <= 100){
-                    setHorizValue(Math.ceil(Number(e.target.value)/2));
-                    setVertValue(Math.ceil(Number(e.target.value)/2));
+                    const newRadii: Radiis = {
+                      horizontal:Math.ceil(Number(e.target.value)/2),
+                      vertical: Math.ceil(Number(e.target.value)/2)
+                    }
+                    setHorizValue(newRadii.horizontal);
+                    setVertValue(newRadii.vertical);
+                    setBorderRadii(type.id, newRadii);
                   }
-                  updateDimensions({horizontal: horizValue, vertical: vertValue});
                 }}
                 className={`${!isSync && "cursor-not-allowed"}`}
                 disabled={!isSync}
@@ -59,7 +49,7 @@ export default function BorderSection({ type }: Props) {
         <div className={`flex gap-x-1 w-4/5 self-end ${isSync && 
           "transition-opacity duration-700 opacity-50"}`}>
           <p className="text-lg font-semibold self-end w-10">
-            {Math.ceil(borderRadii.horizontal)}<span className="text-sm">%</span>
+            {horizValue}<span className="text-sm">%</span>
           </p>
           <label
             htmlFor={`${type.id}-horizontal`}
@@ -76,9 +66,13 @@ export default function BorderSection({ type }: Props) {
               disabled={isSync}
               onChange={(e) => {
                 if (Number(e.target.value) >= 0 && Number(e.target.value) <= 50){
-                  setHorizValue(Math.ceil(Number(e.target.value)))
+                  const newRadii: Radiis = {
+                    horizontal: Math.ceil(Number(e.target.value)),
+                    vertical: vertValue
+                  }
+                  setHorizValue(newRadii.horizontal);
+                  setBorderRadii(type.id, newRadii);
                 }
-                updateDimensions({horizontal: horizValue, vertical: vertValue});
               }}
               className={`${isSync ? "cursor-not-allowed" : ""}`}
             />
@@ -87,7 +81,7 @@ export default function BorderSection({ type }: Props) {
         <div className={`flex gap-x-1 w-4/5 self-end ${isSync 
           && "transition-opacity duration-700 opacity-50"}`}>
           <p className="text-lg font-semibold self-end w-10">
-            {Math.ceil(borderRadii.vertical)}
+            {Math.ceil(vertValue)}
             <span className="text-sm">%</span>
           </p>
           <label 
@@ -105,9 +99,13 @@ export default function BorderSection({ type }: Props) {
               disabled={isSync}
               onChange={(e) => {
                 if(Number(e.target.value) >= 0 && Number(e.target.value) <= 50){
-                  setVertValue(Math.ceil(Number(e.target.value)))
+                  const newRadii: Radiis = {
+                    horizontal: horizValue,
+                    vertical: Math.ceil(Number(e.target.value))
+                  }
+                  setVertValue(newRadii.vertical);
+                  setBorderRadii(type.id, newRadii);
                 }
-                updateDimensions({horizontal: horizValue, vertical: vertValue});
               }}
               className={`${isSync ? "cursor-not-allowed" : ""}`}
             />
@@ -119,10 +117,14 @@ export default function BorderSection({ type }: Props) {
        mb-5 transition-all duration-500 hover:bg-blue-600 hover:p-[0.1rem] "
        onClick={(e) => {
           e.preventDefault();
+          const newRadii: Radiis = {
+            horizontal: Math.ceil((horizValue + vertValue)/2),
+            vertical: Math.ceil((horizValue + vertValue)/2)
+          }
           setIsSync(!isSync);
-          setHorizValue(Math.ceil((horizValue + vertValue)/2));
-          setVertValue(Math.ceil((horizValue + vertValue)/2));
-          updateDimensions({horizontal: horizValue, vertical: vertValue});
+          setHorizValue(newRadii.horizontal);
+          setVertValue(newRadii.vertical);
+          setBorderRadii(type.id, newRadii);
         }}
       >
         🔗

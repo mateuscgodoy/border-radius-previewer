@@ -1,9 +1,9 @@
-import { useStyleStore } from "./ContentContainer";
+import { useBorderStore } from "./ContentContainer";
 import { useCopyToClipboard } from "usehooks-ts";
 import {HiOutlineClipboardCopy} from 'react-icons/hi';
 
 export default function CSSStyle() {
-  const {styleString} = useStyleStore();
+  const {styleString} = useBorderStore();
   const [value, copy] = useCopyToClipboard();
 
   const codeString = `border-radius: ${styleString};`;

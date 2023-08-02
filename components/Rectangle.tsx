@@ -1,11 +1,10 @@
 "use client";
 
-import { useStyleStore } from "./ContentContainer";
-
+import { useBorderStore } from "./ContentContainer";
 
 export default function Rectangle() 
 {
-  const {styleString} = useStyleStore();
+  const {styleString} = useBorderStore();
   return(
     <div className="w-1/2 flex items-center justify-center">
       <div 

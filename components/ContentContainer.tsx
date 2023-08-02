@@ -3,8 +3,8 @@
 import { useState, createContext, Dispatch, SetStateAction } from "react";
 import BorderForm from "./BorderForm";
 import Rectangle from "./Rectangle";
-import { DimensionType } from "@/types";
-import { dimensions } from "@/utils/dimensions";
+import { BorderType, DimensionType, Radiis } from "@/types";
+import { dimensions, borderTypes } from "@/utils/dimensions";
 import { create } from "zustand";
 import CSSStyle from "./CSSStyle";
 
@@ -15,14 +15,23 @@ type DimensionContextType = {
 
 export const DimensionsContext = createContext<DimensionContextType | undefined>(undefined);
 
-interface StyleState {
+interface BorderState {
   styleString: string
-  write: (newStyle:string) => void
+  types: BorderType[]
+  setStyleString: (newStyle:string) => void
+  setBorderRadii: (id: string, newRadii: Radiis) => void
 }
 
-export const useStyleStore = create<StyleState>((set) => ({
+//types: state.types.filter((border) => border.id === id)[0].radiis = newRadii
+export const useBorderStore = create<BorderState>((set) => ({
   styleString: "",
-  write: (newStyle) => set((state) => ({styleString: newStyle}),)
+  types: borderTypes,
+  setStyleString: (newStyle) => set((state) => ({styleString: newStyle}),),
+  setBorderRadii: (id, newRadii) => set((state) => {
+    const newType = state.types.filter((border) => border.id === id)[0];
+    newType.radiis = newRadii
+    return {types: state.types}
+  })
 }));
 
 export default function ContentContainer() {

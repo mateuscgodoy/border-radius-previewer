@@ -30,7 +30,9 @@ The idea came from a lovely GitHub repository called `app-ideas` and can be foun
 
 ## Final Version
 
-### ⚒️ Work in progress...
+|☀️ Light Theme | 🌙 Dark Theme |
+|---|---|
+|![Light Theme](/public/light-theme.png)|![Dark Theme](/public/dark-theme.png)|
 
 Thank you for checking this project out!
 
