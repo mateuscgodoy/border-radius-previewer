@@ -6,6 +6,7 @@ import Rectangle from "./Rectangle";
 import { DimensionType } from "@/types";
 import { dimensions } from "@/utils/dimensions";
 import { create } from "zustand";
+import CSSStyle from "./CSSStyle";
 
 type DimensionContextType = {
   dimensionsArray: DimensionType[],
@@ -37,7 +38,9 @@ export default function ContentContainer() {
           <BorderForm />
         </DimensionsContext.Provider>
       </section>
-      <div>The CSS print Component</div>
+      <section className="mt-16">
+        <CSSStyle />
+      </section>
     </section>
   );
 }

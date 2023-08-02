@@ -16,13 +16,13 @@ The idea came from a lovely GitHub repository called `app-ideas` and can be foun
 
 ### 💼 Mandatory Features
 
-- [ ] Users can see a box which has a `border-radius` property applied to it.
-- [ ] Users can change the 4 `border-radius` values that are applied to the box (top-left, top-right, bottom-left, bottom-right)
-- [ ] Users can copy the result CSS to the clipboard.
+- [X] Users can see a box which has a `border-radius` property applied to it.
+- [X] Users can change the 4 `border-radius` values that are applied to the box (top-left, top-right, bottom-left, bottom-right)
+- [X] Users can copy the result CSS to the clipboard.
 
 ### ⭐ Extra Features
 
-- [ ] Users may change all 8 possible values of the border-radius in order to create a complex shape.
+- [X] Users may change all 8 possible values of the border-radius in order to create a complex shape.
 
 ### 🧱 Constraints
 
