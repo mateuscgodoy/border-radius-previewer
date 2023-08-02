@@ -12,7 +12,7 @@ export default function Hero() {
           <h1 className='text-4xl font-bold text-blue-600'>
             Border Radius Previewer
           </h1>
-          <p className='text-lg font-semibold text-neutral-600'>
+          <p className='text-lg font-semibold text-neutral-600 dark:text-neutral-400'>
             Design. Adjust. Create. Simple like that.
           </p>
         </div>

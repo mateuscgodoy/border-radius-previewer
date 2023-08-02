@@ -30,7 +30,7 @@ export default function ContentContainer() {
 
   return (
     <section className="mt-20">
-      <section className="mt-6 flex justify-stretch">
+      <section className="my-10 flex justify-stretch">
         <DimensionsContext.Provider value={{
           dimensionsArray, setDimensions}
         }>
@@ -38,7 +38,7 @@ export default function ContentContainer() {
           <BorderForm />
         </DimensionsContext.Provider>
       </section>
-      <section className="mt-16">
+      <section>
         <CSSStyle />
       </section>
     </section>
